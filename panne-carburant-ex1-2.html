@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Panne de carburant – Exercice 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    :root {
+        --blue: #003b7a;
+        --green: #009e60;
+        --bg: #f4f6fb;
+        --card-bg: #ffffff;
+        --text: #222;
+        --muted: #555;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        margin: 0;
+        padding: 0 0 40px;
+        color: var(--text);
+    }
+    header {
+        background: linear-gradient(90deg, var(--blue), var(--green));
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    header img {
+        height: 55px;
+        width: auto;
+        border-radius: 6px;
+        background: #fff;
+        padding: 4px;
+    }
+    .header-text { display:flex; flex-direction:column; }
+    .header-text h1 { margin:0; font-size:22px; }
+    .header-text h2 { margin:4px 0 0; font-size:15px; opacity:0.9; }
+    main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .section-title {
+        color: var(--blue);
+        font-size: 20px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        border-left: 5px solid var(--blue);
+        padding-left: 10px;
+    }
+    .subtitle { font-size:14px; color:var(--muted); margin-bottom:8px; }
+    .exercise {
+        background: var(--card-bg);
+        padding: 16px 18px;
+        border-radius: 8px;
+        margin-top: 18px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border-left: 5px solid var(--green);
+    }
+    .choices button {
+        margin: 6px 0;
+        width: 100%;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        text-align: left;
+        background: #f9f9f9;
+    }
+    .choices button.correct { background:#d6f5d6; border-color:#4CAF50; }
+    .choices button.wrong { background:#f7cccc; border-color:#d9534f; }
+    .feedback { margin-top:4px; font-size:13px; min-height:16px; }
+    .feedback.ok { color:#2e7d32; }
+    .feedback.ko { color:#c62828; }
+    .wordbank span {
+        display:inline-block;
+        background:#eef2ff;
+        padding:6px 10px;
+        margin:4px;
+        border-radius:6px;
+        cursor:pointer;
+        border:1px solid #ccd;
+        font-size:14px;
+    }
+    .sentence-output {
+        min-height:24px;
+        margin-top:6px;
+        padding:4px;
+        border-bottom:1px solid #ccc;
+        font-size:15px;
+    }
+    .btn {
+        margin-top: 10px;
+        padding: 7px 14px;
+        background: var(--green);
+        color:#fff;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:14px;
+    }
+    .nav-links {
+        margin-top: 20px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+    .nav-links a {
+        text-decoration:none;
+        background: var(--blue);
+        color:#fff;
+        padding:8px 14px;
+        border-radius:20px;
+        font-size:13px;
+    }
+</style>
+</head>
+<body>
+<header>
+    <img src="img/mycup-sftrf.png" alt="Logo My Cup of T">
+    <div class="header-text">
+        <h1>Exercice 1 – Compréhension orale &amp; ordre des mots</h1>
+        <h2>Compréhension orale et phrases à remettre dans l’ordre</h2>
+    </div>
+</header>
+
+<main>
+    <h3 class="section-title">Partie A – Compréhension orale (QCM)</h3>
+
+    <div class="exercise">
+        <p class="subtitle">1. Écoutez la phrase en anglais, puis choisissez la bonne traduction.</p>
+        <button class="btn" onclick="speak('I’ve run out of petrol.')">▶ Écouter la phrase 1</button>
+
+        <div class="choices">
+            <button onclick="checkQCM(this, true, 'qcmFeedback1')">Je suis en panne d’essence.</button>
+            <button onclick="checkQCM(this, false, 'qcmFeedback1')">Je suis en retard.</button>
+            <button onclick="checkQCM(this, false, 'qcmFeedback1')">J’ai un pneu crevé.</button>
+        </div>
+        <div id="qcmFeedback1" class="feedback"></div>
+    </div>
+
+    <div class="exercise">
+        <p class="subtitle">2. Écoutez la phrase en anglais, puis choisissez la bonne traduction.</p>
+        <button class="btn" onclick="speak('The low fuel light is on.')">▶ Écouter la phrase 2</button>
+
+        <div class="choices">
+            <button onclick="checkQCM(this, false, 'qcmFeedback2')">Mon réservoir est vide.</button>
+            <button onclick="checkQCM(this, true, 'qcmFeedback2')">Le voyant de carburant est allumé.</button>
+            <button onclick="checkQCM(this, false, 'qcmFeedback2')">Je suis dans le tunnel du Mont-Blanc.</button>
+        </div>
+        <div id="qcmFeedback2" class="feedback"></div>
+    </div>
+
+    <h3 class="section-title">Partie B – Mots à remettre dans l’ordre</h3>
+
+    <div class="exercise">
+        <p class="subtitle">3. Cliquez sur les mots dans le bon ordre pour former la phrase :</p>
+        <p><strong>Phrase cible :</strong> Mon réservoir est vide.</p>
+
+        <div id="wordbank1" class="wordbank">
+            <span onclick="addWord(this,1)">empty.</span>
+            <span onclick="addWord(this,1)">My</span>
+            <span onclick="addWord(this,1)">is</span>
+            <span onclick="addWord(this,1)">tank</span>
+        </div>
+
+        <p><strong>Votre phrase :</strong></p>
+        <div id="sentenceOutput1" class="sentence-output"></div>
+
+        <button class="btn" onclick="checkSentence(1,'My tank is empty.')">Vérifier</button>
+        <button class="btn" style="background:#666;" onclick="resetSentence(1)">Réinitialiser</button>
+        <p id="sentenceFeedback1" class="feedback"></p>
+
+        <p style="margin-top:10px;">
+            <button class="btn" onclick="speak('My tank is empty.')">▶ Écouter la phrase correcte</button>
+        </p>
+    </div>
+
+    <div class="exercise">
+        <p class="subtitle">4. Cliquez sur les mots dans le bon ordre pour former la phrase :</p>
+        <p><strong>Phrase cible :</strong> Je suis à court de carburant.</p>
+
+        <div id="wordbank2" class="wordbank">
+            <span onclick="addWord(this,2)">run</span>
+            <span onclick="addWord(this,2)">out</span>
+            <span onclick="addWord(this,2)">I’ve</span>
+            <span onclick="addWord(this,2)">of</span>
+            <span onclick="addWord(this,2)">fuel.</span>
+        </div>
+
+        <p><strong>Votre phrase :</strong></p>
+        <div id="sentenceOutput2" class="sentence-output"></div>
+
+        <button class="btn" onclick="checkSentence(2,'I’ve run out of fuel.')">Vérifier</button>
+        <button class="btn" style="background:#666;" onclick="resetSentence(2)">Réinitialiser</button>
+        <p id="sentenceFeedback2" class="feedback"></p>
+
+        <p style="margin-top:10px;">
+            <button class="btn" onclick="speak('I’ve run out of fuel.')">▶ Écouter la phrase correcte</button>
+        </p>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Retour à l'accueil</a>
+    </div>
+</main>
+
+<script>
+function speak(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-GB";
+    utter.rate = 0.95;
+    speechSynthesis.speak(utter);
+}
+
+function checkQCM(button, isCorrect, feedbackId) {
+    const container = button.parentElement;
+    const buttons = container.querySelectorAll('button');
+    buttons.forEach(b => b.classList.remove('correct','wrong'));
+    const fb = document.getElementById(feedbackId);
+
+    if (isCorrect) {
+        button.classList.add('correct');
+        fb.textContent = "✔ Correct";
+        fb.className = "feedback ok";
+    } else {
+        button.classList.add('wrong');
+        fb.textContent = "✘ Ce n’est pas la bonne traduction.";
+        fb.className = "feedback ko";
+    }
+}
+
+// Partie B – deux phrases
+const builtSentences = {1:"",2:""};
+
+function addWord(el, n) {
+    builtSentences[n] += el.textContent + " ";
+    document.getElementById('sentenceOutput' + n).textContent = builtSentences[n];
+    el.style.visibility = "hidden";
+}
+
+function checkSentence(n, target) {
+    const fb = document.getElementById('sentenceFeedback' + n);
+    if (builtSentences[n].trim() === target) {
+        fb.textContent = "✔ Bravo, la phrase est correcte.";
+        fb.className = "feedback ok";
+    } else {
+        fb.textContent = "✘ La phrase n’est pas correcte.";
+        fb.className = "feedback ko";
+    }
+}
+
+function resetSentence(n) {
+    builtSentences[n] = "";
+    document.getElementById('sentenceOutput' + n).textContent = "";
+    const fb = document.getElementById('sentenceFeedback' + n);
+    fb.textContent = "";
+    fb.className = "feedback";
+    const wb = document.getElementById('wordbank' + n);
+    const words = wb.querySelectorAll('span');
+    words.forEach(w => w.style.visibility = "visible");
+}
+</script>
+</body>
+</html>

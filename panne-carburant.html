@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Panne de carburant – Vocabulaire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    :root {
+        --blue: #003b7a;
+        --green: #009e60;
+        --bg: #f4f6fb;
+        --card-bg: #ffffff;
+        --text: #222;
+        --muted: #555;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        margin: 0;
+        padding: 0 0 40px;
+        color: var(--text);
+    }
+    header {
+        background: linear-gradient(90deg, var(--blue), var(--green));
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    header img {
+        height: 55px;
+        width: auto;
+        border-radius: 6px;
+        background: #fff;
+        padding: 4px;
+    }
+    .header-text { display: flex; flex-direction: column; }
+    .header-text h1 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: 0.03em;
+    }
+    .header-text h2 {
+        margin: 4px 0 0;
+        font-size: 15px;
+        opacity: 0.9;
+        font-weight: normal;
+    }
+    main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .section-title {
+        color: var(--blue);
+        font-size: 20px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        border-left: 5px solid var(--blue);
+        padding-left: 10px;
+    }
+    .subtitle {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 8px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+    }
+    .card {
+        background: var(--card-bg);
+        padding: 12px 14px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border: 1px solid rgba(0,0,0,0.06);
+    }
+    .fr {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+    .en {
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: #444;
+    }
+    button.audio {
+        background: var(--blue);
+        border: none;
+        padding: 5px 11px;
+        border-radius: 20px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    button.audio:hover { background: #002d5a; }
+
+    .nav-block {
+        margin-top: 25px;
+        padding: 16px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border-left: 5px solid var(--green);
+    }
+    .nav-block h3 { margin-top: 0; }
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    .nav-links a {
+        text-decoration: none;
+        background: var(--blue);
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+    }
+    .nav-links a:hover { background: #002d5a; }
+    footer {
+        text-align: center;
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 25px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="img/mycup-sftrf.png" alt="Logo My Cup of T">
+    <div class="header-text">
+        <h1>Panne de carburant</h1>
+        <h2>Vocabulaire simple + entraînement pour le tunnel du Mont-Blanc</h2>
+    </div>
+</header>
+
+<main>
+    <h3 class="section-title">1. Vocabulaire – Types de carburant</h3>
+    <p class="subtitle">Cliquez sur <strong>Écouter</strong> pour entendre la prononciation en anglais.</p>
+
+    <div class="grid">
+        <div class="card">
+            <div class="fr">Essence</div>
+            <div class="en">Petrol (UK) / Gas (US)</div>
+            <button class="audio" onclick="speak('petrol')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Essence sans plomb</div>
+            <div class="en">Unleaded petrol</div>
+            <button class="audio" onclick="speak('unleaded petrol')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Gasoil</div>
+            <div class="en">Diesel</div>
+            <button class="audio" onclick="speak('diesel')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Carburant</div>
+            <div class="en">Fuel</div>
+            <button class="audio" onclick="speak('fuel')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Réservoir</div>
+            <div class="en">Tank</div>
+            <button class="audio" onclick="speak('tank')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Borne de recharge</div>
+            <div class="en">Charging station</div>
+            <button class="audio" onclick="speak('charging station')">Écouter</button>
+        </div>
+    </div>
+
+    <h3 class="section-title">2. Vocabulaire – Panne de carburant</h3>
+
+    <div class="grid">
+        <div class="card">
+            <div class="fr">Je suis en panne d’essence.</div>
+            <div class="en">I’ve run out of petrol.</div>
+            <button class="audio" onclick="speak('I’ve run out of petrol.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Je suis en panne de gasoil.</div>
+            <div class="en">I’ve run out of diesel.</div>
+            <button class="audio" onclick="speak('I’ve run out of diesel.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Je suis en panne de carburant.</div>
+            <div class="en">I’ve run out of fuel.</div>
+            <button class="audio" onclick="speak('I’ve run out of fuel.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Mon réservoir est vide.</div>
+            <div class="en">My tank is empty.</div>
+            <button class="audio" onclick="speak('My tank is empty.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Le voyant de carburant est allumé.</div>
+            <div class="en">The low fuel light is on.</div>
+            <button class="audio" onclick="speak('The low fuel light is on.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Je n’ai presque plus de carburant.</div>
+            <div class="en">I’m almost out of fuel.</div>
+            <button class="audio" onclick="speak('I’m almost out of fuel.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Je ne peux pas atteindre la prochaine station.</div>
+            <div class="en">I can’t reach the next service station.</div>
+            <button class="audio" onclick="speak('I can’t reach the next service station.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">J’ai besoin d’aide pour le carburant, s’il vous plaît.</div>
+            <div class="en">I need fuel assistance, please.</div>
+            <button class="audio" onclick="speak('I need fuel assistance, please.')">Écouter</button>
+        </div>
+        <div class="card">
+            <div class="fr">Je suis dans le tunnel du Mont-Blanc.</div>
+            <div class="en">I’m in the Mont Blanc tunnel.</div>
+            <button class="audio" onclick="speak('I’m in the Mont Blanc tunnel.')">Écouter</button>
+        </div>
+    </div>
+
+    <div class="nav-block">
+        <h3>Navigation</h3>
+        <div class="nav-links">
+            <a href="index.html">Retour à l'accueil</a>
+        </div>
+    </div>
+
+    <footer>
+        My Cup of T – Emergency calls • Fuel breakdown – Training for Mont Blanc tunnel staff
+    </footer>
+</main>
+
+<script>
+function speak(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-GB";
+    utter.rate = 0.95;
+    speechSynthesis.speak(utter);
+}
+</script>
+</body>
+</html>

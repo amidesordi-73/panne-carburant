@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Panne de carburant – Exercice 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    :root {
+        --blue:#003b7a;
+        --green:#009e60;
+        --bg:#f4f6fb;
+        --card-bg:#ffffff;
+        --text:#222;
+        --muted:#555;
+    }
+    body {
+        font-family:Arial,sans-serif;
+        background:var(--bg);
+        margin:0;
+        padding:0 0 40px;
+        color:var(--text);
+    }
+    header {
+        background:linear-gradient(90deg,var(--blue),var(--green));
+        color:#fff;
+        padding:15px 20px;
+        display:flex;
+        align-items:center;
+        gap:15px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.25);
+    }
+    header img {
+        height:55px;
+        width:auto;
+        border-radius:6px;
+        background:#fff;
+        padding:4px;
+    }
+    .header-text { display:flex; flex-direction:column; }
+    .header-text h1 { margin:0; font-size:22px; }
+    .header-text h2 { margin:4px 0 0; font-size:15px; opacity:0.9; }
+    main {
+        max-width:980px;
+        margin:0 auto;
+        padding:20px;
+    }
+    .section-title {
+        color:var(--blue);
+        font-size:20px;
+        margin-top:25px;
+        margin-bottom:10px;
+        border-left:5px solid var(--blue);
+        padding-left:10px;
+    }
+    .subtitle { font-size:14px; color:var(--muted); margin-bottom:8px; }
+    .exercise {
+        background:var(--card-bg);
+        padding:16px 18px;
+        border-radius:8px;
+        margin-top:18px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.08);
+        border-left:5px solid var(--green);
+    }
+    .drag-layout {
+        display:flex;
+        flex-wrap:wrap;
+        gap:15px;
+        margin-top:10px;
+    }
+    .drag-pool,
+    .drop-area {
+        flex:1 1 300px;
+        min-width:260px;
+        background:#f9f9ff;
+        border-radius:8px;
+        padding:10px;
+        border:1px solid #d0d4f0;
+    }
+    .title-box {
+        font-weight:bold;
+        font-size:14px;
+        margin-bottom:6px;
+        color:var(--blue);
+    }
+    .drag-item {
+        background:#ffffff;
+        border-radius:6px;
+        padding:6px 8px;
+        margin:4px 0;
+        border:1px solid #ccd;
+        cursor:grab;
+        font-size:14px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:8px;
+    }
+    .drag-item button {
+        font-size:11px;
+        border:none;
+        border-radius:12px;
+        padding:3px 7px;
+        cursor:pointer;
+        background:var(--blue);
+        color:#fff;
+    }
+    .drop-zone {
+        background:#eef1ff;
+        border-radius:6px;
+        padding:8px;
+        min-height:45px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin:6px 0;
+        border:1px dashed #99a;
+        font-size:14px;
+    }
+    .drop-label { flex:1; padding-right:8px; }
+    .drop-content { min-width:150px; text-align:right; font-size:13px; color:#555; }
+    .drop-zone.over { background:#dde6ff; border-color:#4b6fff; }
+    .drop-zone.correct { background:#d6f5d6; border-color:#4CAF50; }
+    .drop-zone.wrong { background:#f7cccc; border-color:#d9534f; }
+    .btn {
+        margin-top:10px;
+        padding:7px 14px;
+        background:var(--green);
+        color:#fff;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:14px;
+    }
+    .btn.secondary { background:#666; }
+    .feedback-global {
+        margin-top:8px;
+        font-size:14px;
+        min-height:18px;
+    }
+    .feedback-global.ok { color:#2e7d32; }
+    .feedback-global.ko { color:#c62828; }
+    .nav-links {
+        margin-top:20px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+    .nav-links a {
+        text-decoration:none;
+        background:var(--blue);
+        color:#fff;
+        padding:8px 14px;
+        border-radius:20px;
+        font-size:13px;
+    }
+</style>
+</head>
+<body>
+<header>
+    <img src="img/mycup-sftrf.png" alt="Logo My Cup of T">
+    <div class="header-text">
+        <h1>Exercice 2 – Drag &amp; drop FR ↔ EN</h1>
+        <h2>Associez les phrases + prononciation en anglais</h2>
+    </div>
+</header>
+
+<main>
+    <h3 class="section-title">2A. FR → EN</h3>
+    <div class="exercise">
+        <p class="subtitle">Glissez chaque phrase anglaise vers la bonne phrase française.</p>
+        <div class="drag-layout">
+            <div class="drag-pool" id="poolFR2EN">
+                <div class="title-box">Phrases EN à déplacer</div>
+
+                <div class="drag-item" draggable="true" data-key="a1" id="fr2en-a1">
+                    <span>I’ve run out of petrol.</span>
+                    <button onclick="speak('I’ve run out of petrol.')">▶</button>
+                </div>
+                <div class="drag-item" draggable="true" data-key="a2" id="fr2en-a2">
+                    <span>My tank is empty.</span>
+                    <button onclick="speak('My tank is empty.')">▶</button>
+                </div>
+                <div class="drag-item" draggable="true" data-key="a3" id="fr2en-a3">
+                    <span>The low fuel light is on.</span>
+                    <button onclick="speak('The low fuel light is on.')">▶</button>
+                </div>
+                <div class="drag-item" draggable="true" data-key="a4" id="fr2en-a4">
+                    <span>I’ve run out of diesel.</span>
+                    <button onclick="speak('I’ve run out of diesel.')">▶</button>
+                </div>
+            </div>
+
+            <div class="drop-area" id="dropsFR2EN">
+                <div class="title-box">Phrases FR</div>
+
+                <div class="drop-zone" data-answer="a1">
+                    <span class="drop-label">Je suis en panne d’essence.</span>
+                    <span class="drop-content"></span>
+                </div>
+                <div class="drop-zone" data-answer="a2">
+                    <span class="drop-label">Mon réservoir est vide.</span>
+                    <span class="drop-content"></span>
+                </div>
+                <div class="drop-zone" data-answer="a3">
+                    <span class="drop-label">Le voyant de carburant est allumé.</span>
+                    <span class="drop-content"></span>
+                </div>
+                <div class="drop-zone" data-answer="a4">
+                    <span class="drop-label">Je suis en panne de gasoil.</span>
+                    <span class="drop-content"></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" onclick="checkDrag('dropsFR2EN','feedbackFR2EN')">Vérifier</button>
+        <button class="btn secondary" onclick="resetDrag('poolFR2EN','dropsFR2EN','feedbackFR2EN')">Réinitialiser</button>
+        <div id="feedbackFR2EN" class="feedback-global"></div>
+    </div>
+
+    <h3 class="section-title">2B. EN → FR</h3>
+    <div class="exercise">
+        <p class="subtitle">Glissez chaque phrase française vers la bonne phrase anglaise. Vous pouvez écouter la phrase EN.</p>
+        <div class="drag-layout">
+            <div class="drag-pool" id="poolEN2FR">
+                <div class="title-box">Phrases FR à déplacer</div>
+
+                <div class="drag-item" draggable="true" data-key="b1" id="en2fr-b1">
+                    <span>Je n’ai presque plus de carburant.</span>
+                    <button onclick="speak('I’m almost out of fuel.')">EN ▶</button>
+                </div>
+                <div class="drag-item" draggable="true" data-key="b2" id="en2fr-b2">
+                    <span>Je ne peux pas atteindre la prochaine station.</span>
+                    <button onclick="speak('I can’t reach the next service station.')">EN ▶</button>
+                </div>
+                <div class="drag-item" draggable="true" data-key="b3" id="en2fr-b3">
+                    <span>J’ai besoin d’aide pour le carburant, s’il vous plaît.</span>
+                    <button onclick="speak('I need fuel assistance, please.')">EN ▶</button>
+                </div>
+                <div class="drag-item" draggable="true" data-key="b4" id="en2fr-b4">
+                    <span>Je suis dans le tunnel du Mont-Blanc.</span>
+                    <button onclick="speak('I’m in the Mont Blanc tunnel.')">EN ▶</button>
+                </div>
+            </div>
+
+            <div class="drop-area" id="dropsEN2FR">
+                <div class="title-box">Phrases EN</div>
+
+                <div class="drop-zone" data-answer="b1">
+                    <span class="drop-label">I’m almost out of fuel.</span>
+                    <span class="drop-content"></span>
+                </div>
+                <div class="drop-zone" data-answer="b2">
+                    <span class="drop-label">I can’t reach the next service station.</span>
+                    <span class="drop-content"></span>
+                </div>
+                <div class="drop-zone" data-answer="b3">
+                    <span class="drop-label">I need fuel assistance, please.</span>
+                    <span class="drop-content"></span>
+                </div>
+                <div class="drop-zone" data-answer="b4">
+                    <span class="drop-label">I’m in the Mont Blanc tunnel.</span>
+                    <span class="drop-content"></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" onclick="checkDrag('dropsEN2FR','feedbackEN2FR')">Vérifier</button>
+        <button class="btn secondary" onclick="resetDrag('poolEN2FR','dropsEN2FR','feedbackEN2FR')">Réinitialiser</button>
+        <div id="feedbackEN2FR" class="feedback-global"></div>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Retour à l'accueil</a>
+    </div>
+</main>
+
+<script>
+function speak(text){
+    const utter=new SpeechSynthesisUtterance(text);
+    utter.lang="en-GB";
+    utter.rate=0.95;
+    speechSynthesis.speak(utter);
+}
+
+// Drag & drop générique
+const allDragItems=document.querySelectorAll('.drag-item');
+const allDropZones=document.querySelectorAll('.drop-zone');
+
+allDragItems.forEach(item=>{
+    item.addEventListener('dragstart',e=>{
+        e.dataTransfer.setData('text/plain',item.id);
+    });
+});
+
+allDropZones.forEach(zone=>{
+    zone.addEventListener('dragover',e=>{
+        e.preventDefault();
+        zone.classList.add('over');
+    });
+    zone.addEventListener('dragleave',()=>{
+        zone.classList.remove('over');
+    });
+    zone.addEventListener('drop',e=>{
+        e.preventDefault();
+        zone.classList.remove('over');
+        const id=e.dataTransfer.getData('text/plain');
+        const dragged=document.getElementById(id);
+        if(!dragged) return;
+        const content=zone.querySelector('.drop-content');
+        if(content.firstChild){
+            // renvoyer l’élément précédent dans la banque
+            const oldItem=content.firstChild;
+            const poolId = oldItem.id.startsWith('fr2en') ? 'poolFR2EN' : 'poolEN2FR';
+            document.getElementById(poolId).appendChild(oldItem);
+        }
+        content.textContent='';
+        content.appendChild(dragged);
+        zone.classList.remove('correct','wrong');
+    });
+});
+
+function checkDrag(dropContainerId, feedbackId){
+    const container=document.getElementById(dropContainerId);
+    const zones=container.querySelectorAll('.drop-zone');
+    let allFilled=true;
+    let allCorrect=true;
+    zones.forEach(z=>{
+        z.classList.remove('correct','wrong');
+        const ans=z.getAttribute('data-answer');
+        const content=z.querySelector('.drop-content');
+        const item=content.querySelector('.drag-item');
+        if(!item){
+            allFilled=false;
+            allCorrect=false;
+            z.classList.add('wrong');
+        }else{
+            const key=item.getAttribute('data-key');
+            if(key===ans){
+                z.classList.add('correct');
+            }else{
+                z.classList.add('wrong');
+                allCorrect=false;
+            }
+        }
+    });
+    const fb=document.getElementById(feedbackId);
+    if(!allFilled){
+        fb.textContent="Tu n’as pas rempli toutes les phrases.";
+        fb.className="feedback-global ko";
+    }else if(allCorrect){
+        fb.textContent="✔ Bravo, toutes les associations sont correctes !";
+        fb.className="feedback-global ok";
+    }else{
+        fb.textContent="Certaines associations sont incorrectes. Les zones en rouge sont à revoir.";
+        fb.className="feedback-global ko";
+    }
+}
+
+function resetDrag(poolId, dropContainerId, feedbackId){
+    const pool=document.getElementById(poolId);
+    const container=document.getElementById(dropContainerId);
+    const zones=container.querySelectorAll('.drop-zone');
+    zones.forEach(z=>{
+        z.classList.remove('correct','wrong','over');
+        const content=z.querySelector('.drop-content');
+        const item=content.querySelector('.drag-item');
+        if(item) pool.appendChild(item);
+        content.textContent='';
+    });
+    const fb=document.getElementById(feedbackId);
+    fb.textContent='';
+    fb.className='feedback-global';
+}
+</script>
+</body>
+</html>
